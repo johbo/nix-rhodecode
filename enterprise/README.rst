@@ -49,7 +49,7 @@ Bower dependencies
 
 .. code:: shell
 
-   bower2nix bower.json pkgs/bower-packages.nix
+   bower2nix src/bower.json pkgs/bower-packages.nix
 
 
 
