@@ -13,6 +13,12 @@ My intention is to run an instance of `RhodeCode Enterprise`_ as a NixOS_
 service.
 
 
+Status
+======
+
+In both cases `nix-build` is able to produce a result on darwin so far.
+
+
 .. Links:
 
 .. _RhodeCode Enterprise: https://code.rhodecode.com/rhodecode-enterprise-ce
