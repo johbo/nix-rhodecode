@@ -33,6 +33,15 @@ Next things to be done
 
 
 
+Contact
+=======
+
+I plan to maintain reasonable ways to contact myself at https://www.johbo.com.
+In terms of these files, fell free to open issues or pull requests as it suits
+you best.
+
+
+
 .. Links:
 
 .. _RhodeCode Enterprise: https://code.rhodecode.com/rhodecode-enterprise-ce
