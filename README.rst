@@ -23,11 +23,11 @@ In both cases `nix-build` is able to produce a result on darwin so far.
 Next things to be done
 ======================
 
-* Test on NixOS
+* Test on NixOS_
 
 * Create a simple service module
 
-* Try a deployment, e.g. based on NixOPS
+* Try a deployment, e.g. based on NixOPS_
 
 * Improve service modules to initialize on the first run
 
@@ -40,3 +40,7 @@ Next things to be done
 .. _RhodeCode VCSServer: https://code.rhodecode.com/rhodecode-vcsserver
 
 .. _Nix: https://nixos.org/nix
+
+.. _NixOS: https://nixos.org/nixos
+
+.. _NixOPS: https://nixos.org/nixops
