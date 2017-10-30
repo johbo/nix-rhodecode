@@ -31,8 +31,6 @@ Next things to be done
 
 * Improve service modules to initialize on the first run
 
-* Allow to easily re-generate the dependencies
-
 
 
 Contact
