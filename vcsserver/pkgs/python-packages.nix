@@ -294,7 +294,7 @@ self: super: {
     name = "hgsubversion-1.8.7";
     buildInputs = with self; [];
     doCheck = false;
-    propagatedBuildInputs = with self; [subvertpy];
+    propagatedBuildInputs = with self; [mercurial subvertpy];
     src = fetchurl {
       url = "https://pypi.python.org/packages/1c/b8/ff4d2e0ec486f9765b410f09728c02a010e7485d68d6154968074498a403/hgsubversion-1.8.7.tar.gz";
       sha256 = "0llk2h5zimdr54qbdzk0rqm6n04qsh0xj4iwq4yw75dsm2pjii2i";
@@ -326,7 +326,7 @@ self: super: {
       sha256 = "1dvqsjn8vw253wz9d1pz17j79mf4bs53dvp2qxck2qdp1am1njw4";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   ipdb = super.buildPythonPackage {
@@ -671,8 +671,8 @@ self: super: {
     name = "rhodecode-vcsserver-4.10.0";
     buildInputs = with self; [pytest py pytest-cov pytest-sugar pytest-runner pytest-catchlog pytest-profiling gprof2dot pytest-timeout mock WebTest cov-core coverage configobj];
     doCheck = true;
-    propagatedBuildInputs = with self; [Beaker configobj decorator dulwich hgsubversion hg-evolve infrae.cache mercurial msgpack-python pyramid-jinja2 pyramid pyramid-mako repoze.lru simplejson subprocess32 subvertpy six translationstring WebOb wheel zope.deprecation zope.interface gevent greenlet gunicorn waitress ipdb ipython pytest py pytest-cov pytest-sugar pytest-runner pytest-catchlog pytest-profiling gprof2dot pytest-timeout mock WebTest cov-core coverage];
-    src = ./.;
+    propagatedBuildInputs = with self; [Beaker configobj decorator dulwich hgsubversion hg-evolve infrae.cache mercurial msgpack-python pyramid-jinja2 pyramid pyramid-mako repoze.lru simplejson subprocess32 subvertpy six translationstring WebOb zope.deprecation zope.interface gevent greenlet gunicorn waitress ipdb ipython pytest py pytest-cov pytest-sugar pytest-runner pytest-catchlog pytest-profiling gprof2dot pytest-timeout mock WebTest cov-core coverage];
+    src = ./src;
     meta = {
       license = [ { fullName = "GPL V3"; } { fullName = "GNU General Public License v3 or later (GPLv3+)"; } ];
     };
@@ -713,7 +713,7 @@ self: super: {
       sha256 = "0wwi1c6md4vkbcsfsf8dklf3vr4mcdj4mpxkanwgb6jb1432x5yw";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   simplejson = super.buildPythonPackage {
@@ -830,7 +830,7 @@ self: super: {
       sha256 = "0pw6yyxi348r2xpq3ykqnf7gwi881azv2422d2ixb0xi5jws2ky7";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   wcwidth = super.buildPythonPackage {
@@ -846,19 +846,6 @@ self: super: {
       license = [ pkgs.lib.licenses.mit ];
     };
   };
-  wheel = super.buildPythonPackage {
-    name = "wheel-0.29.0";
-    buildInputs = with self; [];
-    doCheck = false;
-    propagatedBuildInputs = with self; [];
-    src = fetchurl {
-      url = "https://pypi.python.org/packages/c9/1d/bd19e691fd4cfe908c76c429fe6e4436c9e83583c4414b54f6c85471954a/wheel-0.29.0.tar.gz";
-      sha256 = "0j0n38hg1jvrmyy68f9ikvzq1gs9g0sx4ws7maf8wi3bwbbqmfqy";
-    };
-    meta = {
-      license = [ pkgs.lib.licenses.mit ];
-    };
-  };
   zope.deprecation = super.buildPythonPackage {
     name = "zope.deprecation-4.1.2";
     buildInputs = with self; [];
@@ -869,7 +856,7 @@ self: super: {
       sha256 = "0y0bxdhw0c4z80q2gspp6igi2k2ip0b6jnssrh9hqq7w3ysj5mpy";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   zope.interface = super.buildPythonPackage {
@@ -882,11 +869,11 @@ self: super: {
       sha256 = "0ks8h73b2g4bkad821qbv0wzjppdrwys33i7ka45ik3wxjg1l8if";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
 
 ### Test requirements
 
-
+  
 }
