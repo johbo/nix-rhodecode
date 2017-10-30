@@ -19,6 +19,20 @@ Status
 In both cases `nix-build` is able to produce a result on darwin so far.
 
 
+
+Next things to be done
+======================
+
+* Test on NixOS
+
+* Create a simple service module
+
+* Try a deployment, e.g. based on NixOPS
+
+* Improve service modules to initialize on the first run
+
+
+
 .. Links:
 
 .. _RhodeCode Enterprise: https://code.rhodecode.com/rhodecode-enterprise-ce
