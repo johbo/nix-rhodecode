@@ -35,12 +35,13 @@ NodeJS dependencies
 
 .. code:: shell
 
-   cd pkgs
+   pushd pkgs
    node2nix --input ../src/package.json \
             -o node-packages.nix \
             -e node-env.nix \
             -c node-default.nix \
             -d --flatten
+   popd
 
 
 
