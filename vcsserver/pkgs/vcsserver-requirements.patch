@@ -1,0 +1,31 @@
+# HG changeset patch
+# User Johannes Bornhold <johannes@bornhold.name>
+# Date 1509321214 -3600
+#      Mon Oct 30 00:53:34 2017 +0100
+# Node ID 2f3df18e3e41edbdff0fa90382ef941b329700b4
+# Parent  91bf6be9a84a3048c4346786a3a4db6370dcac83
+Comment out wheel in requirements.txt
+
+diff --git a/requirements.txt b/requirements.txt
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -18,17 +18,18 @@ simplejson==3.11.1
+ subprocess32==3.2.7
+ 
+ # Custom subvertpy that is not available on pypi.
+ https://code.rhodecode.com/upstream/subvertpy/archive/subvertpy-0.9.3.tar.gz?md5=4e49da2fe07608239cc9a80a7bb8f33c#egg=subvertpy==0.9.3
+ 
+ six==1.9.0
+ translationstring==1.3
+ WebOb==1.7.3
+-wheel==0.29.0
++# TODO: conflicts with the wheel version in nixpkgs
++# wheel==0.29.0
+ zope.deprecation==4.1.2
+ zope.interface==4.1.3
+ 
+ ## http servers
+ gevent==1.2.2
+ greenlet==0.4.12
+ gunicorn==19.7.1
+ waitress==1.0.2

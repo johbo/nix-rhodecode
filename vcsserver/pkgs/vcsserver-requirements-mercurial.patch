@@ -1,0 +1,30 @@
+# HG changeset patch
+# User Johannes Bornhold <johannes@bornhold.name>
+# Date 1509318448 -3600
+#      Mon Oct 30 00:07:28 2017 +0100
+# Node ID 85e618a1573b2a1045712a7f0d5509094a0e3245
+# Parent  6ed1dd13d98f46cee2b560e5e8aeaa24c18de8bd
+Tweak requirements, missing version
+
+diff --git a/requirements.txt b/requirements.txt
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -3,17 +3,17 @@ setuptools==30.1.0
+ 
+ Beaker==1.9.0
+ configobj==5.0.6
+ decorator==4.0.11
+ dulwich==0.13.0
+ hgsubversion==1.8.7
+ hg-evolve==6.6.0
+ infrae.cache==1.0.1
+-mercurial==4.2.3
++mercurial==4.2.2
+ msgpack-python==0.4.8
+ pyramid-jinja2==2.5
+ pyramid==1.9.1
+ pyramid-mako==1.0.2
+ repoze.lru==0.6
+ simplejson==3.11.1
+ subprocess32==3.2.7
+ 
