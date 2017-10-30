@@ -44,13 +44,6 @@ let
     sha256 = "138s58k013nyr50b3xfp3x3pdqrnmq2s5kli6bgn3kx94pl9z3l6";
   };
 
-  # TODO: Move
-  rhodecode-enterprise-src = pkgs.fetchhg {
-    url = https://code.rhodecode.com/rhodecode-enterprise-ce;
-    rev = "a327c56bb684";
-    sha256 = "0abckv4mwlxk32zmqf07g2lpccxfkb4bx8jhd7hqksb76rja11jf";
-  };
-
   pythonGeneratedPackages = import ./pkgs/python-packages.nix {
     inherit pkgs;
     inherit (pkgs) fetchurl fetchgit fetchhg;
