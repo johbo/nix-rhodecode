@@ -36,7 +36,7 @@ NodeJS dependencies
 .. code:: shell
 
    cd pkgs
-   node2nix --input ../package.json \
+   node2nix --input ../src/package.json \
             -o node-packages.nix \
             -e node-env.nix \
             -c node-default.nix \
