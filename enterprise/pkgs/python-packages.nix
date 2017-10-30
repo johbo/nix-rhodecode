@@ -898,7 +898,7 @@ self: super: {
       sha256 = "1dvqsjn8vw253wz9d1pz17j79mf4bs53dvp2qxck2qdp1am1njw4";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   invoke = super.buildPythonPackage {
@@ -1301,7 +1301,7 @@ self: super: {
       sha256 = "1inrn4jqjkz7sbdr2fvwix87vh4mn8ih1h4v8z40ic3ladgkbjc6";
     };
     meta = {
-      license = [ { fullName = "GNU Library or Lesser General Public License (LGPL)"; } { fullName = "LGPL with exceptions or ZPL"; } ];
+      license = [ pkgs.lib.licenses.zpl21 { fullName = "GNU Library or Lesser General Public License (LGPL)"; } { fullName = "LGPL with exceptions or ZPL"; } ];
     };
   };
   ptyprocess = super.buildPythonPackage {
@@ -1725,7 +1725,7 @@ self: super: {
     buildInputs = with self; [pytest py pytest-cov pytest-sugar pytest-runner pytest-catchlog pytest-profiling gprof2dot pytest-timeout mock WebTest cov-core coverage configobj];
     doCheck = true;
     propagatedBuildInputs = with self; [Babel Beaker FormEncode Mako Markdown MarkupSafe MySQL-python Paste PasteDeploy PasteScript Pygments pygments-markdown-lexer Pylons Routes SQLAlchemy Tempita URLObject WebError WebHelpers WebHelpers2 WebOb WebTest Whoosh alembic amqplib anyjson appenlight-client authomatic cssselect celery channelstream colander decorator deform docutils gevent gunicorn infrae.cache ipython iso8601 kombu lxml msgpack-python nbconvert packaging psycopg2 py-gfm pycrypto pycurl pyparsing pyramid pyramid-debugtoolbar pyramid-mako pyramid-beaker pysqlite python-dateutil python-ldap python-memcached python-pam recaptcha-client repoze.lru requests simplejson sshpubkeys subprocess32 waitress zope.cachedescriptors dogpile.cache dogpile.core psutil py-bcrypt];
-    src = ./.;
+    src = ./src;
     meta = {
       license = [ { fullName = "Affero GNU General Public License v3 or later (AGPLv3+)"; } { fullName = "AGPLv3, and Commercial License"; } ];
     };
@@ -1805,7 +1805,7 @@ self: super: {
       sha256 = "0wwi1c6md4vkbcsfsf8dklf3vr4mcdj4mpxkanwgb6jb1432x5yw";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   simplejson = super.buildPythonPackage {
@@ -2000,7 +2000,7 @@ self: super: {
       sha256 = "0pw6yyxi348r2xpq3ykqnf7gwi881azv2422d2ixb0xi5jws2ky7";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   wcwidth = super.buildPythonPackage {
@@ -2052,7 +2052,7 @@ self: super: {
       sha256 = "191x92d9ahkii0b2in4jaw4cf0jhdgkjc7mbp0bbd0a1kqah6blc";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   zope.deprecation = super.buildPythonPackage {
@@ -2065,7 +2065,7 @@ self: super: {
       sha256 = "0y0bxdhw0c4z80q2gspp6igi2k2ip0b6jnssrh9hqq7w3ysj5mpy";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   zope.event = super.buildPythonPackage {
@@ -2078,7 +2078,7 @@ self: super: {
       sha256 = "1w858k9kmgzfj36h65kp27m9slrmykvi5cjq6c119xqnaz5gdzgm";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
   zope.interface = super.buildPythonPackage {
@@ -2091,11 +2091,11 @@ self: super: {
       sha256 = "0ks8h73b2g4bkad821qbv0wzjppdrwys33i7ka45ik3wxjg1l8if";
     };
     meta = {
-      license = [ ];
+      license = [ pkgs.lib.licenses.zpl21 ];
     };
   };
 
 ### Test requirements
 
-
+  
 }
