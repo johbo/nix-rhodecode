@@ -20,6 +20,8 @@ let
     overlays = [
       (import ./overlays.nix)
     ];
+    inherit (pkgs_)
+      system;
   };
 
   inherit (pkgs.lib) fix extends;
