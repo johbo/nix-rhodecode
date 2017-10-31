@@ -18,6 +18,13 @@ self: super: {
     ];
   });
 
+  ipython = super.ipython.override (attrs: {
+    propagatedBuildInputs =
+      if (! pkgs.stdenv.isDarwin)
+      then pkgs.lib.remove self.appnope attrs.propagatedBuildInputs
+      else attrs.propagatedBuildInputs;
+  });
+
   subvertpy = super.subvertpy.override (attrs: {
     # TODO: johbo: Remove the "or" once we drop 16.03 support
     SVN_PREFIX = "${pkgs.subversion.dev or pkgs.subversion}";
