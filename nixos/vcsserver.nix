@@ -66,7 +66,7 @@ in {
       after = [ "network.target" ];
       path = [ cfg.package ];
       script = ''
-        exec pserve ${configFile}
+        exec gunicorn --paste ${configFile}
       '';
       serviceConfig = {
         User = "vcsserver";
