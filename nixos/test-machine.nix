@@ -8,4 +8,8 @@
     ./vcsserver.nix
   ];
 
+  services.rhodecode-vcsserver = {
+    enable = true;
+  };
+
 }
