@@ -56,9 +56,16 @@ self: super: {
   });
 
   ipython = super.ipython.override (attrs: {
-    propagatedBuildInputs = attrs.propagatedBuildInputs ++ [
-      self.gnureadline
-    ];
+    propagatedBuildInputs =
+    let
+      basePropagatedBuildInputs =
+        if (! pkgs.stdenv.isDarwin)
+        then pkgs.lib.remove self.appnope attrs.propagatedBuildInputs
+        else attrs.propagatedBuildInputs;
+    in
+      basePropagatedBuildInputs ++ [
+        self.gnureadline
+      ];
   });
 
   celery = super.celery.override (attrs: {
