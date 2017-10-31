@@ -4,19 +4,13 @@
 # derivation. For advanced tweaks to pimp up the development environment we use
 # "shell.nix" so that it does not have to clutter this file.
 
-args@
-{ pythonPackages ? "python27Packages"
+{ pkgs ? (import <nixpkgs> {})
+, pythonPackages ? "python27Packages"
 , pythonExternalOverrides ? self: super: {}
 , doCheck ? false
-, ...
 }:
 
 let
-
-  # Use nixpkgs from args or import them. We use this indirect approach
-  # through args to be able to use the name `pkgs` for our customized packages.
-  # Otherwise we will end up with an infinite recursion.
-  pkgs = args.pkgs or (import <nixpkgs> { });
 
   # Evaluates to the last segment of a file system path.
   basename = path: with pkgs.lib; last (splitString "/" path);
