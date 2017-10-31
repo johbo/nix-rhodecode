@@ -295,13 +295,13 @@ celery.always.eager = false
 ###         BEAKER CACHE        ####
 ####################################
 # default cache dir for templates.  Putting this into a ramdisk
-## can boost performance, eg. ${cfg.dataDirectory}/data_ramdisk
-cache_dir = ${cfg.dataDirectory}/data
+## can boost performance, eg. ${cfg.dataDir}/data_ramdisk
+cache_dir = ${cfg.dataDir}/data
 
 ## locking and default file storage for Beaker. Putting this into a ramdisk
-## can boost performance, eg. ${cfg.dataDirectory}/data_ramdisk/cache/beaker_data
-beaker.cache.data_dir = ${cfg.dataDirectory}/data/cache/beaker_data
-beaker.cache.lock_dir = ${cfg.dataDirectory}/data/cache/beaker_lock
+## can boost performance, eg. ${cfg.dataDir}/data_ramdisk/cache/beaker_data
+beaker.cache.data_dir = ${cfg.dataDir}/data/cache/beaker_data
+beaker.cache.lock_dir = ${cfg.dataDir}/data/cache/beaker_lock
 
 beaker.cache.regions = super_short_term, short_term, long_term, sql_cache_short, auth_plugins, repo_cache_long
 
@@ -324,7 +324,7 @@ beaker.cache.sql_cache_short.key_length = 256
 ## default is memory cache, configure only if required
 ## using multi-node or multi-worker setup
 #beaker.cache.auth_plugins.type = ext:database
-#beaker.cache.auth_plugins.lock_dir = ${cfg.dataDirectory}/data/cache/auth_plugin_lock
+#beaker.cache.auth_plugins.lock_dir = ${cfg.dataDir}/data/cache/auth_plugin_lock
 #beaker.cache.auth_plugins.url = postgresql://postgres:secret@localhost/rhodecode
 #beaker.cache.auth_plugins.url = mysql://root:secret@127.0.0.1/rhodecode
 #beaker.cache.auth_plugins.sa.pool_recycle = 3600
@@ -349,7 +349,7 @@ beaker.cache.repo_cache_long.expire = 2592000
 ## .session.type is type of storage options for the session, current allowed
 ## types are file, ext:memcached, ext:database, and memory (default).
 beaker.session.type = file
-beaker.session.data_dir = ${cfg.dataDirectory}/data/sessions/data
+beaker.session.data_dir = ${cfg.dataDir}/data/sessions/data
 
 ## db based session, fast, and allows easy management over logged in users
 #beaker.session.type = ext:database
@@ -361,7 +361,7 @@ beaker.session.data_dir = ${cfg.dataDirectory}/data/sessions/data
 
 beaker.session.key = rhodecode
 beaker.session.secret = production-rc-uytcxaz
-beaker.session.lock_dir = ${cfg.dataDirectory}/data/sessions/lock
+beaker.session.lock_dir = ${cfg.dataDir}/data/sessions/lock
 
 ## Secure encrypted cookie. Requires AES and AES python libraries
 ## you must disable beaker.session.secret to use this
@@ -394,7 +394,7 @@ beaker.session.auto = false
 ## WHOOSH Backend, doesn't require additional services to run
 ## it works good with few dozen repos
 search.module = rhodecode.lib.index.whoosh
-search.location = ${cfg.dataDirectory}/data/index
+search.location = ${cfg.dataDir}/data/index
 
 ########################################
 ###    CHANNELSTREAM CONFIG         ####
@@ -412,7 +412,7 @@ channelstream.server = 127.0.0.1:9800
 ## see nginx/apache configuration examples in our docs
 channelstream.ws_url = ws://rhodecode.yourserver.com/_channelstream
 channelstream.secret = secret
-channelstream.history.location = ${cfg.dataDirectory}/channelstream_history
+channelstream.history.location = ${cfg.dataDir}/channelstream_history
 
 ## Internal application path that Javascript uses to connect into.
 ## If you use proxy-prefix the prefix should be added before /_channelstream
@@ -489,7 +489,7 @@ set debug = false
 ###########################################
 ###   MAIN RHODECODE DATABASE CONFIG    ###
 ###########################################
-sqlalchemy.db1.url = sqlite:///${cfg.dataDirectory}/rhodecode.db?timeout=30
+sqlalchemy.db1.url = sqlite:///${cfg.dataDir}/rhodecode.db?timeout=30
 #sqlalchemy.db1.url = postgresql://postgres:qweqwe@localhost/rhodecode
 #sqlalchemy.db1.url = mysql://root:qweqwe@localhost/rhodecode
 #sqlalchemy.db1.url = postgresql://postgres:qweqwe@localhost/rhodecode
@@ -557,7 +557,7 @@ svn.proxy.generate_config = false
 ## Generate config file with `SVNListParentPath` set to `On`.
 svn.proxy.list_parent_path = true
 ## Set location and file name of generated config file.
-svn.proxy.config_file_path = ${cfg.dataDirectory}/mod_dav_svn.conf
+svn.proxy.config_file_path = ${cfg.dataDir}/mod_dav_svn.conf
 ## Used as a prefix to the `Location` block in the generated config file.
 ## In most cases it should be set to `/`.
 svn.proxy.location_root = /
