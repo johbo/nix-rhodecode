@@ -56,7 +56,7 @@ in {
     };
 
     reposDir = mkOption {
-      default = "/var/lib/rhodecode-enterprise/repositories";
+      default = "/var/lib/repositories";
       type = types.str;
       description = ''
         The directory to hold the repositories.

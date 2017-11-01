@@ -69,18 +69,19 @@ in {
         exec gunicorn --paste ${configFile}
       '';
       serviceConfig = {
-        User = "vcsserver";
-        Group = "vcsserver";
+        User = "enterprise";
+        Group = "enterprise";
       };
     };
 
-    users.users.vcsserver = {
-      isSystemUser = true;
-      name = "vcsserver";
-      group = "vcsserver";
-      description = "VCSServer server user";
-    };
+    # TODO: Check if the vcsserver can run as a dedicated user
+    # users.users.vcsserver = {
+    #   isSystemUser = true;
+    #   name = "vcsserver";
+    #   group = "vcsserver";
+    #   description = "VCSServer server user";
+    # };
 
-    users.groups.vcsserver = {};
+    # users.groups.vcsserver = {};
   };
 }
