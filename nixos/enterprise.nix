@@ -103,6 +103,8 @@ in {
       wantedBy = [ "enterprise.service" ];
       partOf = [ "enterprise.service" ];
       before = [ "enterprise.service" ];
+      after = [ "enterprise-initial-password-key.service" ];
+      wants = [ "enterprise-initial-password-key.service" ];
       path = [ cfg.package ];
       serviceConfig.Type = "oneshot";
       script = let
@@ -123,16 +125,12 @@ in {
         # Set up the database
         if ! test -e ${databaseInitMarker}
         then
-          (
-            umask 077
-            ${pkgs.pwgen}/bin/pwgen 20 1 > /root/initial-rhodecode-enterprise-password
-          )
           ${pkgs.sudo}/bin/sudo -u enterprise paster setup-rhodecode \
               ${configFile} \
               --force-yes \
               --user=admin \
               --email=admin@example.com \
-              --password=$(cat /root/initial-rhodecode-enterprise-password) \
+              --password=$(cat /run/keys/enterprise-initial-password) \
               --repos=${cfg.reposDir}
           touch ${databaseInitMarker}
         else
