@@ -9,6 +9,10 @@
     ./vcsserver.nix
   ];
 
+  networking.firewall.allowedTCPPorts = [
+    5000
+  ];
+
   services.rhodecode-enterprise = {
     enable = true;
   };
