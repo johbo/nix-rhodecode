@@ -56,6 +56,18 @@ in {
       type = types.string;
     };
 
+    user = mkOption {
+      description = "User account under which VCSServer runs.";
+      default = "enterprise";
+      type = types.str;
+    };
+
+    group = mkOption {
+      description = "Group account under which VCSServer runs.";
+      default = "enterprise";
+      type = types.str;
+    };
+
   };
 
   config = mkIf cfg.enable {
@@ -69,19 +81,22 @@ in {
         exec gunicorn --paste ${configFile}
       '';
       serviceConfig = {
-        User = "enterprise";
-        Group = "enterprise";
+        User = cfg.user;
+        Group = cfg.group;
       };
     };
 
     # TODO: Check if the vcsserver can run as a dedicated user
-    # users.users.vcsserver = {
-    #   isSystemUser = true;
-    #   name = "vcsserver";
-    #   group = "vcsserver";
-    #   description = "VCSServer server user";
-    # };
+    #       Currently using "enterprise" as the default value
+    users.users = optionalAttrs (cfg.user == "vcsserver") [{
+      isSystemUser = true;
+      name = "vcsserver";
+      group = "vcsserver";
+      description = "RhodeCode VCSServer user";
+    }];
 
-    # users.groups.vcsserver = {};
+    users.groups = optionalAttrs (cfg.group == "vcsserver") [{
+      name = "vcsserver";
+    }];
   };
 }
