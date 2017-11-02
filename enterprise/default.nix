@@ -91,7 +91,8 @@ let
       releaseName = "RhodeCodeEnterpriseCE-${version}";
       src = rhodecode-enterprise-ce-src;
       patches = [
-        ./patches/reference-env-variables-in-config.patch
+        # TODO: Re-check, mybe we can get there without it.
+        # ./patches/reference-env-variables-in-config.patch
       ];
       dontStrip = true; # prevent strip, we don't need it.
 
