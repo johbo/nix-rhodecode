@@ -5,7 +5,11 @@ with lib;
 let
   cfg = config.services.rhodecode-enterprise;
 
-  configFile = pkgs.writeText "enterprise.ini" cfg.config;
+  configFile =
+    if isNull cfg.secretConfigFile
+    then cfg.baseConfigFile
+    else cfg.secretConfigFile;
+
   defaultConfig = import ./enterprise-config.nix {
     inherit cfg;
   };
@@ -42,6 +46,26 @@ in {
       description = ''
         Configuration file content for RhodeCode Enterprise.
       '';
+    };
+
+    baseConfigFile = mkOption {
+      default = pkgs.writeText "enterprise.ini" cfg.config;
+      description = ''
+        Base version of "config" as a file.
+      '';
+      type = types.path;
+    };
+
+    secretConfigFile = mkOption {
+      default = null;
+      description = ''
+        Path to a secret config file. If set then this config file will be used to
+        run enterprise. Typically you want to refer to the attribute
+        "config" via the "use = config:PATH" mechanism.
+
+        This is intended to be used by the deployment keys of NixOPS.
+      '';
+      type = types.nullOr types.str;
     };
 
     dataDir = mkOption {
@@ -129,6 +153,7 @@ in {
       after = [ "network.target" ];
       path = [ cfg.package ];
       script = ''
+        # Base config file: ${cfg.baseConfigFile}
         exec gunicorn --paste ${configFile}
       '';
       serviceConfig = {
