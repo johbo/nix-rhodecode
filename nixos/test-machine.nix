@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Makes testing easier
-  boot.isContainer = true;
-
   imports = [
     ./enterprise.nix
     ./vcsserver.nix
