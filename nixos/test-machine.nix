@@ -6,8 +6,10 @@
     ./vcsserver.nix
   ];
 
-  deployment.keys.enterprise-initial-password = {
-    text = "secret";
+  deployment.keys = {
+    enterprise-initial-password = {
+      text = "secret";
+    };
   };
 
   networking.firewall.allowedTCPPorts = [
