@@ -81,6 +81,18 @@ in {
       type = types.string;
     };
 
+    adminUser = mkOption {
+      description = "Username of the initial admin user.";
+      default = "admin";
+      type = types.string;
+    };
+
+    adminEmail = mkOption {
+      description = "E-Mail address of the initial admin user.";
+      default = "root@localhost";
+      type = types.string;
+    };
+
     initialAdminPasswordFile = mkOption {
       description = ''
         File which holds the initial admin password. Use this in combination
@@ -151,8 +163,8 @@ in {
           ${pkgs.sudo}/bin/sudo -u enterprise paster setup-rhodecode \
               ${configFile} \
               --force-yes \
-              --user=admin \
-              --email=admin@example.com \
+              --user=${cfg.adminUser} \
+              --email=${cfg.adminEmail} \
               --password=$(cat $initial_password_file) \
               --repos=${cfg.reposDir}
           touch ${databaseInitMarker}
