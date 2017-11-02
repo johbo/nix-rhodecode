@@ -81,6 +81,20 @@ in {
       type = types.string;
     };
 
+    initialAdminPasswordFile = mkOption {
+      description = ''
+        File which holds the initial admin password. Use this in combination
+        with the deployment key mechanism to provide the initial admin
+        password.
+
+        A random password based on "pwgen" will be generated if no initial
+        password is provided. In this case the initial password will be
+        stored in the file "/root/initial-enterprise-password".
+      '';
+      default = "/run/keys/enterprise-initial-password";
+      type = types.string;
+    };
+
   };
 
   config = mkIf cfg.enable {
@@ -125,12 +139,21 @@ in {
         # Set up the database
         if ! test -e ${databaseInitMarker}
         then
+          initial_password_file=${cfg.initialAdminPasswordFile}
+          if ! test -e $initial_password_file
+          then
+            initial_password_file=/root/initial-enterprise-password
+            (
+              umask 077
+              ${pkgs.pwgen}/bin/pwgen 20 1 > $initial_password_file
+            )
+          fi
           ${pkgs.sudo}/bin/sudo -u enterprise paster setup-rhodecode \
               ${configFile} \
               --force-yes \
               --user=admin \
               --email=admin@example.com \
-              --password=$(cat /run/keys/enterprise-initial-password) \
+              --password=$(cat $initial_password_file) \
               --repos=${cfg.reposDir}
           touch ${databaseInitMarker}
         else
