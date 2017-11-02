@@ -81,6 +81,18 @@ in {
       type = types.string;
     };
 
+    user = mkOption {
+      description = "User account under which Enterprise runs.";
+      default = "enterprise";
+      type = types.str;
+    };
+
+    group = mkOption {
+      description = "Group account under which Enterprise runs.";
+      default = "enterprise";
+      type = types.str;
+    };
+
     adminUser = mkOption {
       description = "Username of the initial admin user.";
       default = "admin";
@@ -120,8 +132,8 @@ in {
         exec gunicorn --paste ${configFile}
       '';
       serviceConfig = {
-        User = "enterprise";
-        Group = "enterprise";
+        User = cfg.user;
+        Group = cfg.group;
       };
     };
 
@@ -139,13 +151,13 @@ in {
         # Create data directory.
         if ! test -e ${cfg.dataDir}; then
           mkdir -m 0700 -p ${cfg.dataDir}
-          chown -R enterprise:enterprise ${cfg.dataDir}
+          chown -R ${cfg.user}:${cfg.group} ${cfg.dataDir}
         fi
 
         # Create repositories directory.
         if ! test -e ${cfg.reposDir}; then
           mkdir -m 0700 -p ${cfg.reposDir}
-          chown -R enterprise:enterprise ${cfg.reposDir}
+          chown -R ${cfg.user}:${cfg.group} ${cfg.reposDir}
         fi
 
         # Set up the database
@@ -174,13 +186,15 @@ in {
       '';
     };
 
-    users.users.enterprise = {
+    users.users = optionalAttrs (cfg.user == "enterprise") [{
       isSystemUser = true;
       name = "enterprise";
       group = "enterprise";
       description = "RhodeCode Enterprise server user";
-    };
+    }];
 
-    users.groups.enterprise = {};
+    users.groups = optionalAttrs (cfg.group == "enterprise") [{
+      name = "enterprise";
+    }];
   };
 }
