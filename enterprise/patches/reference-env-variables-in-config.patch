@@ -1,0 +1,67 @@
+# HG changeset patch
+# User Johannes Bornhold <johannes@bornhold.name>
+# Date 1509651597 -3600
+#      Thu Nov 02 20:39:57 2017 +0100
+# Node ID c9039b50057a3e8985431426dcdadc6161544e3d
+# Parent  f7d934fc88506a4082ba49df71cb2cb02ade9b20
+Patch middleware to use environment variables
+
+Allows to use format style "{ENV_NAME}" placeholders in the configuration. It
+will be replaced by the value of the environment variable "NAME" in this case.
+
+diff --git a/rhodecode/config/middleware.py b/rhodecode/config/middleware.py
+--- a/rhodecode/config/middleware.py
++++ b/rhodecode/config/middleware.py
+@@ -135,16 +135,25 @@ def make_pyramid_app(global_config, **se
+       are called. Changing this should be done with great care to not break
+       cases when these fragments are assembled from another place.
+ 
+     """
+     # The edition string should be available in pylons too, so we add it here
+     # before copying the settings.
+     settings.setdefault('rhodecode.edition', 'Community Edition')
+ 
++    import os
++    environ = {
++        'ENV_{}'.format(key): value
++        for key, value in os.environ.items()
++    }
++
++    global_config = _substitute_values(global_config, environ)
++    settings = _substitute_values(settings, environ)
++
+     # As long as our Pylons application does expect "unprepared" settings, make
+     # sure that we keep an unmodified copy. This avoids unintentional change of
+     # behavior in the old application.
+     settings_pylons = settings.copy()
+ 
+     sanitize_settings_and_apply_defaults(settings)
+     config = Configurator(settings=settings)
+     add_pylons_compat_data(config.registry, global_config, settings_pylons)
+@@ -159,16 +168,26 @@ def make_pyramid_app(global_config, **se
+     pyramid_app.config = config
+ 
+     # creating the app uses a connection - return it after we are done
+     meta.Session.remove()
+ 
+     return pyramid_app
+ 
+ 
++def _substitute_values(mapping, substitutions):
++    result = {
++        # Note: Cannot use regular replacements, since they would clash
++        # with the implementation of ConfigParser. Using "format" instead.
++        key: value.format(**substitutions)
++        for key, value in mapping.items()
++    }
++    return result
++
++
+ def make_not_found_view(config):
+     """
+     This creates the view which should be registered as not-found-view to
+     pyramid. Basically it contains of the old pylons app, converted to a view.
+     Additionally it is wrapped by some other middlewares.
+     """
+     settings = config.registry.settings
+     vcs_server_enabled = settings['vcs.server.enable']
