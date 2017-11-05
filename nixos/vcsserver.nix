@@ -10,6 +10,10 @@ let
     inherit cfg;
   };
 
+  makeOptSymlink = import ./lib/make-opt-symlink.nix {
+    inherit pkgs;
+  };
+
 in {
   imports = [
   ];
@@ -68,9 +72,25 @@ in {
       type = types.str;
     };
 
+    installOptSymlink = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        Install the symlink into /opt/rhodecode to allow an administrator
+        to easily access the CLI commands.
+      '';
+    };
+
   };
 
   config = mkIf cfg.enable {
+
+    environment.systemPackages =
+      pkgs.lib.optional cfg.installOptSymlink (makeOptSymlink cfg.package "vcsserver");
+
+    environment.pathsToLink = [
+      "/opt/rhodecode"
+    ];
 
     systemd.services.vcsserver = {
       description = "RhodeCode VCSServer";
@@ -98,5 +118,6 @@ in {
     users.groups = optionalAttrs (cfg.group == "vcsserver") [{
       name = "vcsserver";
     }];
+
   };
 }

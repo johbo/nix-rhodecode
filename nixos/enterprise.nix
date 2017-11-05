@@ -14,6 +14,10 @@ let
     inherit cfg;
   };
 
+  makeOptSymlink = import ./lib/make-opt-symlink.nix {
+    inherit pkgs;
+  };
+
 in {
   imports = [
   ];
@@ -143,9 +147,25 @@ in {
       type = types.string;
     };
 
+    installOptSymlink = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        Install the symlink into /opt/rhodecode to allow an administrator
+        to easily access the CLI commands.
+      '';
+    };
+
   };
 
   config = mkIf cfg.enable {
+
+    environment.systemPackages =
+      pkgs.lib.optional cfg.installOptSymlink (makeOptSymlink cfg.package "enterprise");
+
+    environment.pathsToLink = [
+      "/opt/rhodecode"
+    ];
 
     systemd.services.enterprise = {
       description = "RhodeCode Enterprise";
@@ -222,4 +242,5 @@ in {
       name = "enterprise";
     }];
   };
+
 }

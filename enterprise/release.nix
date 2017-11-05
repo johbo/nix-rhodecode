@@ -208,15 +208,6 @@ let
 
     build = enterprise;
 
-    optSymlink = pkgs.stdenv.mkDerivation {
-      name = "rhodecode-enterprise-symlink";
-      phases = "installPhase";
-      installPhase = ''
-        mkdir -p $out/opt/rhodecode
-        ln -s ${enterprise} $out/opt/rhodecode/enterprise
-      '';
-    };
-
     # johbo: Currently this is simply running the tests against the sources. Nicer
     # would be to run xdist and against the installed application, so that we also
     # cover the impact of installing the application.

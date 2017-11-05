@@ -12,13 +12,4 @@ let
 
 in {
   build = vcsserver;
-
-  optSymlink = pkgs.stdenv.mkDerivation {
-    name = "rhodecode-vcsserver-symlink";
-    phases = "installPhase";
-    installPhase = ''
-      mkdir -p $out/opt/rhodecode
-      ln -s ${vcsserver} $out/opt/rhodecode/vcsserver
-    '';
-  };
 }
