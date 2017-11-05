@@ -430,7 +430,7 @@ channelstream.proxy_path = /_channelstream
 appenlight = false
 
 appenlight.server_url = https://api.appenlight.com
-appenlight.api_key = YOUR_API_KEY
+# appenlight.api_key = YOUR_API_KEY
 #appenlight.transport_config = https://api.appenlight.com?threaded=1&timeout=5
 
 # used for JS client
