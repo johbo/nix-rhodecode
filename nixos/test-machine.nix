@@ -21,11 +21,11 @@
         use = config:${cfg.baseConfigFile}
         sqlalchemy.db1.url = sqlite:///${cfg.dataDir}/rhodecode.db?timeout=30
 
-        # TODO: Set the following
-        # rhodecode.encrypted_values.secret =
-        app_instance_uuid = rc-pre-prod-test-johannes
-        channelstream.secret = secret
-        beaker.session.secret = peoen32w9x8en
+        # Note: "pwgen 40 1" is your friend
+        rhodecode.encrypted_values.secret = test-secret-encrypted-values
+        app_instance_uuid = test-instance-uuid
+        channelstream.secret = test-secret-channelstream
+        beaker.session.secret = test-secret-sessions
       '';
       user = "enterprise";
       group = "enterprise";
