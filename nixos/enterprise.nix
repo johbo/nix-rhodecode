@@ -156,6 +156,21 @@ in {
       '';
     };
 
+    initializeDatabase = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Initializing the database automatically is convenient, still it is
+        potentially dangerous. An example would be if you connect your shiny
+        new system to an existing database.
+
+        Turn it on when you want everything to be automatic.
+
+        The decision if the database has to be initialized is based on a
+        marker inside of the filesystem.
+      '';
+    };
+
   };
 
   config = mkIf cfg.enable {
@@ -205,6 +220,8 @@ in {
           chown -R ${cfg.user}:${cfg.group} ${cfg.reposDir}
         fi
 
+      ''
+      + (pkgs.lib.optionals cfg.initializeDatabase ''
         # Set up the database
         if ! test -e ${databaseInitMarker}
         then
@@ -228,7 +245,7 @@ in {
         else
           echo "Skipping database initialize, marker ${databaseInitMarker} found."
         fi
-      '';
+      '');
     };
 
     users.users = optionalAttrs (cfg.user == "enterprise") [{
