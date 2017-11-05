@@ -43,6 +43,7 @@
   services.rhodecode-enterprise = {
     enable = true;
     secretConfigFile = "/run/keys/enterprise-secret-config";
+    initializeDatabase = true;
   };
 
   services.rhodecode-vcsserver = {
