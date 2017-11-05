@@ -540,7 +540,7 @@ vcs.start_server = false
 ## `hg`  - mercurial
 ## `git` - git
 ## `svn` - subversion
-vcs.backends = hg, git, svn
+vcs.backends = git, hg, svn
 
 vcs.connection_timeout = 3600
 ## Compatibility version when creating SVN repositories. Defaults to newest version when commented out.
