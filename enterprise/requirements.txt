@@ -19,7 +19,7 @@ deform==2.0.4
 docutils==0.13.1
 dogpile.cache==0.6.4
 dogpile.core==0.4.1
-ecdsa==0.13
+ecdsa==0.13.3
 FormEncode==1.2.4
 future==0.14.3
 futures==3.0.2
