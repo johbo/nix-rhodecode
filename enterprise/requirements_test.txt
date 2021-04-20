@@ -1,6 +1,6 @@
 # test related requirements
 pytest==3.1.2
-py==1.4.34
+py==1.10.0
 pytest-cov==2.5.1
 pytest-sugar==0.8.0
 pytest-runner==2.11.1
